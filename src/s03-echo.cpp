@@ -39,7 +39,7 @@ auto main(int argc, char* argv[]) -> int
 
     for (; i < argc; ++i) {
         std::cout << argv[i];
-        eachInNewLine ? std::cout << std::endl : std::cout << " ";
+        std::cout << (eachInNewLine ? "\n" : " ");
     }
 
     if (!noNewLine)
