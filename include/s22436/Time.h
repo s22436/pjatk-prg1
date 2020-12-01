@@ -15,6 +15,8 @@ struct Time {
     auto to_string() const -> std::string;
     auto to_string(Time_of_day) const -> std::string;
 
+    auto time_of_day() const -> Time_of_day;
+
     auto next_hour() -> void;
     auto next_minute() -> void;
     auto next_second() -> void;

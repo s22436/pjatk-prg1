@@ -28,6 +28,19 @@ auto s22436::Time::to_string() const -> std::string
     return out.str();
 }
 
+auto s22436::Time::time_of_day() const -> Time_of_day
+{
+    if (hours < 5) {
+        return s22436::NIGHT;
+    } else if (hours < 12) {
+        return s22436::MORNING;
+    } else if (hours < 20) {
+        return s22436::AFTERNOON;
+    } else {
+        return s22436::EVENING;
+    }
+}
+
 auto s22436::Time::to_string(s22436::Time_of_day tod) const -> std::string
 {
     switch (tod) {
@@ -135,23 +148,9 @@ auto main() -> int
     time.next_second();
     std::cout << "AFTER SECOND INCREASED: " << time.to_string() << '\n';
 
-    // time = s22436::Time(12, 59, 59);
-    // time = s22436::Time(23, 59, 59);
 
-    s22436::Time_of_day currentDayTime;
-
-    if (time.hours < 5) {
-        currentDayTime = s22436::NIGHT;
-    } else if (time.hours < 12) {
-        currentDayTime = s22436::MORNING;
-    } else if (time.hours < 20) {
-        currentDayTime = s22436::AFTERNOON;
-    } else {
-        currentDayTime = s22436::EVENING;
-    }
-
-
-    std::cout << "Obecna pora dnia: " << time.to_string(currentDayTime) << '\n';
+    std::cout << "Godzina: " << time.to_string() << " to "
+              << time.to_string(time.time_of_day()) << '\n';
 
     auto timeOne = s22436::Time(21, 13, 11);
     auto timeTwo = s22436::Time(3, 3, 3);
